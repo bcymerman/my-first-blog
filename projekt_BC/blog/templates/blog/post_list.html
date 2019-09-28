@@ -1,23 +1,13 @@
-<html>
-    <head>Projekt koncowy | SUPER BLOG</head>
-    <body>
-        <div>
-            <h1><a href="/">SUPER BLOG</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        <div>
-            <p>published: 01-01-2019</p>
-            <h2><a href="">My first post</a></h2>
-            <p>de Finibus Bonorum et Malorum</p>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-
-        <div>
-            <p>published: 02-02-2019</p>
-            <h2><a href="">My secound post</a></h2>
-            <p>de Finibus Bonorum et Malorum</p>
-        </div>
-
-        <p>Hi there</p>
-        <p>It works</p>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
